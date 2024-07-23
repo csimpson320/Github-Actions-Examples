@@ -5,8 +5,8 @@ on: [push]
 jobs:
   debug-job:
     runs-on: ubuntu-latest
-    env:
-      ACTIONS_STEP_DEBUG: true  # Enable debug logging for all steps
+    # env:
+    #   ACTIONS_STEP_DEBUG: true  # Enable debug logging for all steps
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -35,7 +35,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Masking value
-        run: echo "::add-mask::${{ secrets.EX_SECRET }}"
+        run: echo "${{ secrets.EX_SECRET }}"
 
   fail-job:
     runs-on: ubuntu-latest
