@@ -1,0 +1,44 @@
+name: Some Workflow Commands
+
+on: [push]
+
+jobs:
+  debug-job:
+    runs-on: ubuntu-latest
+    env:
+      ACTIONS_STEP_DEBUG: true  # Enable debug logging for all steps
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Create debug message
+        id: debug-step
+        run: echo "::debug::This is a debug message"
+
+      - name: Another step
+        run: echo "This step runs after debug"
+
+      - name: Final step
+        run: echo "All steps completed"
+
+  grp-messages:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Group log messages
+        run: |
+            echo "::group::My Grouped Messages"
+            echo "Message 1"
+            echo "Message 2"
+            echo "::endgroup::"
+
+  masking-secret:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Masking value
+        run: echo "::add-mask::${{ secrets.EX_SECRET }}"
+
+  fail-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fail workflow
+        run: echo "::error::This is an error message"
