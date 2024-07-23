@@ -3,7 +3,7 @@ name: Custom Environment Variables
 on: [push]
   
 env:
-  DAY_OF_WEEK: Monday  # Workflow-level var
+  DAY_OF_WEEK: false  # Workflow-level var
   
 jobs:
   var_job:
